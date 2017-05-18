@@ -58,3 +58,29 @@ Alternatively we can use multicast DNS with the built in MDNS registry for a zer
 需要重启 consul 的server端/， 再重启 api gateway 才可以让服务恢复正常
 
 
+
+
+
+### 一些consul常用的命令收集
+
+```
+//主服务器启动
+consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul -node=agent-one -bind=172.20.73.239  -config-dir /etc/consul.d
+
+//启动其他的node集群到主服务器
+consul agent -data-dir /tmp/consul -node=agent-two -bind=172.20.73.229
+
+//在主服务器上查看集群的node信息
+consul members
+
+```
+
+
+
+
+
+
+
+
+
+
