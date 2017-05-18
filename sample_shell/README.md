@@ -73,6 +73,9 @@ consul agent -data-dir /tmp/consul -node=agent-two -bind=172.20.73.229
 //在主服务器上查看集群的node信息
 consul members
 
+//加入cluster的node
+consul join 172.20.20.11
+
 ```
 
 
