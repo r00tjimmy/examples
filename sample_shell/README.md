@@ -49,15 +49,12 @@ Zero Dependency MDNS
 
 Alternatively we can use multicast DNS with the built in MDNS registry for a zero dependency configuration. Just pass --registry=mdns to your application on startup.
 
-
 --------------------------------------------------
 
 
 
 ###假如服务发现的时候，服务名称冲突了怎么办？？
 
--------------------------------------------------
-需要重启 consul 的server端， 再重启 api gateway 才可以让服务恢复正常
-------------------------------------------------
+需要重启 consul 的server端/， 再重启 api gateway 才可以让服务恢复正常
 
 
