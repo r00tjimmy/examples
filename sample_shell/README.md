@@ -28,6 +28,8 @@ go run examples/greeter/api/api.go
 
 default connect the localhost consul
 
+在 API gateway 的那台服务器上，本身的consul 作为 server， 其他的要运行服务的服务器也要安装 consul，然后把这些consul加入到 api gateway那台服务器的consul一起集群起来，然后实际上每个服务都是跟本地的 consul 来通信，注册服务，consul通过集群来同步注册了的服务信息。
+
 
 
 ### 怎么做API网关， 假如用 consul做服务发现的话， 要做consuk集群， 假如用其他？？参考下面的命令
