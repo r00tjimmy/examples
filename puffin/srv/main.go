@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	hello "github.com/micro/examples/greeter/srv/proto/hello"
+	hello "/puffin/srv/proto/hello"
 	"github.com/micro/go-micro"
 
 	"golang.org/x/net/context"
@@ -20,7 +20,7 @@ func (s *Say) Hello(ctx context.Context, req *hello.Request, rsp *hello.Response
 
 func main() {
 	service := micro.NewService(
-		micro.Name("go.micro.srv.greeter"),
+		micro.Name("go.micro.srv.puffin"),
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
 	)
