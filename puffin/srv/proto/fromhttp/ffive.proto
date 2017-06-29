@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package go.micro.srv.ffive;
+
+service Getapi {
+	rpc Apirps(Request) returns (Response) {}
+}
+
+message Request {
+	string ffiveurl = 1;
+}
+
+message Response {
+	string ffiversp = 1;
+}
+
