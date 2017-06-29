@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	hello "github.com/micro/examples/puffin/srv/proto/hello"
+  ffive "github.com/micro/examples/puffin/srv/proto/ffive"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	api "github.com/micro/micro/api/proto"
@@ -13,6 +14,7 @@ import (
 	"golang.org/x/net/context"
 )
 
+//---------------------- puffin --------------------------
 type Say struct {
 	Client hello.SayClient
 }
@@ -41,6 +43,40 @@ func (s *Say) Hello(ctx context.Context, req *api.Request, rsp *api.Response) er
 	return nil
 }
 
+
+
+//-----------------------  ffive --------------------------
+type Getapi struct {
+  FClient ffive.GetapiClient
+}
+
+func (g *Getapi) Apirps(ctx context.Context, req *api.Request, rsp *api.Response) error {
+  log.Print("recv getapi.apirps API request")
+
+  ffiveurl, ok := req.Get["ffiveurl"]
+  if !ok || len(ffiveurl.Values) == 0 {
+    return errors.BadRequest("go.micro.api.buffin", "name cannot be blank")
+  }
+
+  response, err := g.FClient.Apirps(ctx, &ffive.Request{Ffiveurl: strings.Join(ffiveurl.Values, " "),
+ })
+
+  if err != nil {
+    return err
+  }
+
+  rsp.StatusCode = 200
+  b, _ := json.Marshal(map[string]string{
+    "ffiveurl": response.Ffiversp,
+  })
+  rsp.Body = string(b)
+
+  return nil
+}
+
+
+
+
 func main() {
 	service := micro.NewService(
 		micro.Name("go.micro.api.puffin"),
@@ -51,7 +87,8 @@ func main() {
 
 	service.Server().Handle(
 		service.Server().NewHandler(
-			&Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},
+			&Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},        //puffin
+      &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
 		),
 	)
 
@@ -59,3 +96,7 @@ func main() {
 		log.Fatal(err)
 	}
 }
+
+
+
+
