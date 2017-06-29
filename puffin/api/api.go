@@ -88,11 +88,14 @@ func main() {
 	service.Server().Handle(
 		service.Server().NewHandler(
 			&Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},        //puffin
+      &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
 		),
 
+		/**
   service.Server().NewHandler(
      &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
 		),
+		**/
 
     //&Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
 	)
