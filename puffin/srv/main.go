@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	hello "./proto/hello"
+	hello "github.com/micro/examples/puffin/srv/proto/hello"
 	"github.com/micro/go-micro"
 
 	"golang.org/x/net/context"

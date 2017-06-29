@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	hello "github.com/micro/examples/greeter/srv/proto/hello"
+	hello "github.com/micro/examples/puffin/srv/proto/hello"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	api "github.com/micro/micro/api/proto"
@@ -22,7 +22,7 @@ func (s *Say) Hello(ctx context.Context, req *api.Request, rsp *api.Response) er
 
 	name, ok := req.Get["name"]
 	if !ok || len(name.Values) == 0 {
-		return errors.BadRequest("go.micro.api.greeter", "Name cannot be blank")
+		return errors.BadRequest("go.micro.api.puffin", "Name cannot be blank")
 	}
 
 	response, err := s.Client.Hello(ctx, &hello.Request{
@@ -43,7 +43,7 @@ func (s *Say) Hello(ctx context.Context, req *api.Request, rsp *api.Response) er
 
 func main() {
 	service := micro.NewService(
-		micro.Name("go.micro.api.greeter"),
+		micro.Name("go.micro.api.puffin"),
 	)
 
 	// parse command line flags
@@ -51,7 +51,7 @@ func main() {
 
 	service.Server().Handle(
 		service.Server().NewHandler(
-			&Say{Client: hello.NewSayClient("go.micro.srv.greeter", service.Client())},
+			&Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},
 		),
 	)
 

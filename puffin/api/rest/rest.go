@@ -5,7 +5,7 @@ import (
 
 	"github.com/emicklei/go-restful"
 
-	hello "github.com/micro/examples/greeter/srv/proto/hello"
+	hello "github.com/micro/examples/puffin/srv/proto/hello"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-web"
 
@@ -21,7 +21,7 @@ var (
 func (s *Say) Anything(req *restful.Request, rsp *restful.Response) {
 	log.Print("Received Say.Anything API request")
 	rsp.WriteEntity(map[string]string{
-		"message": "Hi, this is the Greeter API",
+		"message": "Hi, this is the puffin API",
 	})
 }
 
@@ -44,13 +44,13 @@ func (s *Say) Hello(req *restful.Request, rsp *restful.Response) {
 func main() {
 	// Create service
 	service := web.NewService(
-		web.Name("go.micro.api.greeter"),
+		web.Name("go.micro.api.puffin"),
 	)
 
 	service.Init()
 
-	// setup Greeter Server Client
-	cl = hello.NewSayClient("go.micro.srv.greeter", client.DefaultClient)
+	// setup puffin Server Client
+	cl = hello.NewSayClient("go.micro.srv.puffin", client.DefaultClient)
 
 	// Create RESTful handler
 	say := new(Say)
@@ -58,7 +58,7 @@ func main() {
 	wc := restful.NewContainer()
 	ws.Consumes(restful.MIME_XML, restful.MIME_JSON)
 	ws.Produces(restful.MIME_JSON, restful.MIME_XML)
-	ws.Path("/greeter")
+	ws.Path("/puffin")
 	ws.Route(ws.GET("/").To(say.Anything))
 	ws.Route(ws.GET("/{name}").To(say.Hello))
 	wc.Add(ws)
