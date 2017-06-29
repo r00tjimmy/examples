@@ -79,6 +79,11 @@ func (g *Getapi) Apirps(ctx context.Context, req *api.Request, rsp *api.Response
 
 func main() {
 	service := micro.NewService(
+		/**
+		micro.Name("go.micro.api.puffin.say"),
+		micro.Name("go.micro.api.puffin.getapi"),
+		**/
+
 		micro.Name("go.micro.api.puffin"),
 	)
 
@@ -86,10 +91,13 @@ func main() {
 	service.Init()
 
 	service.Server().Handle(
+
+		/**
 		service.Server().NewHandler(
 			&Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},        //puffin
       &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
 		),
+		**/
 
 		/**
   service.Server().NewHandler(
@@ -98,7 +106,59 @@ func main() {
 		**/
 
     //&Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
+
+
+		service.Server().NewHandler(
+	   &Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},
+		 //&Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},
+		),
+
+		/**
+		service.Server().NewHandler(
+	   //&Say{Client: hello.NewSayClient("go.micro.srv.puffin.say", service.Client())},
+		 &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin.getapi", service.Client())},
+		),
+		**/
+
+
 	)
+
+
+service.Server().Handle(
+
+		/**
+		service.Server().NewHandler(
+			&Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},        //puffin
+      &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
+		),
+		**/
+
+		/**
+  service.Server().NewHandler(
+     &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
+		),
+		**/
+
+    //&Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},   //ffive
+
+
+		service.Server().NewHandler(
+	   //&Say{Client: hello.NewSayClient("go.micro.srv.puffin", service.Client())},
+		 &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin", service.Client())},
+		),
+
+		/**
+		service.Server().NewHandler(
+	   //&Say{Client: hello.NewSayClient("go.micro.srv.puffin.say", service.Client())},
+		 &Getapi{FClient: ffive.NewGetapiClient("go.micro.srv.puffin.getapi", service.Client())},
+		),
+		**/
+
+
+	)
+
+
+
 
 	if err := service.Run(); err != nil {
 		log.Fatal(err)
