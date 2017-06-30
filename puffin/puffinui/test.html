@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vue 异步获取数据</title>
+    <style type="text/css">
+        div{
+            margin: 20px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<!-- vue ajax获取数据 -->
+<div class="vue-box">
+    <h1>{{ posts.category }}</h1>
+    <ul v-for="item in posts.article">
+        <li>{{ item.title }}</li>
+        <li>{{ item.author }}</li>
+    </ul>
+</div>
+<!-- 引入veujs -->
+<script src="./js/vue.min.js"></script>
+<!-- 引入用于配合vuejs执行ajax操作的插件 -->
+<script src="./js/vue-resource.min.js"></script>
+<script>
+// ajax 获取数据
+var vm2=new Vue({
+    el: '.vue-box',
+    data: {
+        posts:{}
+    },
+    // 页面加载的时候会自动执行ready
+    mounted: function(){
+        // 等同于jquery的$.ajax
+        this.$http.get('data.php').then(function(response){
+                this.posts=response.data;
+            })
+    }
+});
+</script>
+</body>
+</html>
