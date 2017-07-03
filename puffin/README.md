@@ -1,6 +1,7 @@
 # Puffin
 
 An data packing application, get data from API, database, etc.
+golang can get data output from python, php and the other program language use adapter.
 
 ## Contents
 
@@ -85,3 +86,5 @@ micro web
 ```
 
 Browse to http://localhost:8082/puffin
+
+
