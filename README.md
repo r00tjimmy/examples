@@ -12,6 +12,11 @@ in folder greeter, steps like this:
 
 script for jenkins
 
+run global service with k8s
+```
+kubecel create
+```
+
 .Dockerfile
 ```shell
 FROM alpine:3.2
@@ -19,16 +24,21 @@ ADD greeter-srv /greeter-srv
 ENTRYPOINT [ "/greeter-srv" ]
 ```
 
-script for jenkins
+script for jenkins with docker
 ```shell
 
-docker built -t r00t-micro/xxx:v1 .
-docker push xx.xx.xx/xx
+#docker built -t r00t-micro/xxx:v1 .
+#docker push xx.xx.xx/xx
+
+cd ./greeter/srv
+go build -o greeter-srv
+docker build -t r00txx/micro-greeter:v$BUILD_NUMBER .
+
 
 ```
 
 
-script for k8s
+script for jenkins with k8s
 ```shell
 
 kubectl create -f xx.yml

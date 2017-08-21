@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM golang:latest
 ADD . /app
 WORKDIR /app
 ENTRYPOINT [ "/app/profile" ]
