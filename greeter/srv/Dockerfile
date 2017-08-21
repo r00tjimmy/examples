@@ -1,3 +1,3 @@
-FROM alpine:3.2
+FROM golang:latest
 ADD greeter-srv /greeter-srv
 ENTRYPOINT [ "/greeter-srv" ]
