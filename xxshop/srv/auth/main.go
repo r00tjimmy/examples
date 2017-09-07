@@ -12,7 +12,7 @@ import (
   "golang.org/x/net/trace"
 
   "github.com/micro/go-micro"
-  "github.com/micro/go-micro/metadata
+  "github.com/micro/go-micro/metadata"
 )
 
 type Auth struct {
