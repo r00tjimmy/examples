@@ -13,7 +13,6 @@ import (
 
   "github.com/micro/go-micro"
   "github.com/micro/go-micro/metadata
-  "github.com/micro/examples/booking/srv/auth/proto"
 )
 
 type Auth struct {
