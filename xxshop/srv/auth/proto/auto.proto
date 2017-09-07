@@ -1,21 +1,34 @@
-syntax = "proto3";
+syntax = "proto3"
 
 package auth;
 
+# 注意这里有两个值  Request,  Result
 service Auth {
   rpc VerifyToken(Request) returns (Result) {}
 }
 
+
+#先定义  Request  的值, 实际上就是定义了一个参数的类型
 message Request {
   string authToken = 1;
 }
 
+
+
+#再定义  Result 的值， 实际上也是定义 Result 的参数类型
 message Result {
   Customer customer = 1;
 }
 
+
+# Result 返回的是一个  Customer 类型， 这里再定义了 Customer 类型
 message Customer {
   int32 id = 1;
   string authToken = 2;
 }
+
+
+
+
+
 
