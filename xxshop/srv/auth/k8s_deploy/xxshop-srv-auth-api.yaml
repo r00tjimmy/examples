@@ -3,20 +3,20 @@
 apiVersion: extensions/v1beta1 
 kind: Deployment
 metadata:
-  name: micro-greeter-api 
+  name: micro-xxshop-srv-auth-api 
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: micro-greeter-api-xx
-        run: micro-greeter-api 
+        name: micro-xxshop-srv-auth-api-xx
+        run: micro-xxshop-srv-auth-api 
     spec:
       containers:
-        - name: micro-greeter-api 
-          image: r00txx/micro-greeter-api:v1 
+        - name: micro-xxshop-srv-auth-api 
+          image: 10.86.20.57:5000/micro-xxshop-srv-auth:v1 
           command: [
-            "/greeter-api",   
+            "/xxshop-srv-auth-api",   
             "--registry_address=10.86.20.63:8500",
           ]
 
