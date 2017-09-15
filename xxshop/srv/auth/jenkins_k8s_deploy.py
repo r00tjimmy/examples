@@ -51,6 +51,7 @@ GOBIN         =   "/usr/local/go/bin/go"
 KUBECTL       =   "/root/local/bin/kubectl"
 # DEPLOY_FILES   =   "./k8s_deploy/" + APP_NAME + "-srv"
 K8S_MASTER    =   "http://10.86.20.57:8080"
+K8S_FILES     =  "./k8s_deploy/"
 
 
 class Jkd(object):
@@ -99,7 +100,7 @@ class Jkd(object):
     if r == "":
       print "deploy不存在， 创建中............"
       #create deploy
-      rDeploy = os.popen( KUBECTL + " create -f " + self.appName + ".yaml " + "-s" + K8S_MASTER).read()
+      rDeploy = os.popen( KUBECTL + " create -f " + K8S_FILES + self.appName + ".yaml " + "-s" + K8S_MASTER).read()
 
       #create srv
       #rSrv = os.popen( KUBECTL + " create -f " + self.appName + "-api.yaml " + "-s" + K8S_MASTER).read()
@@ -110,11 +111,12 @@ class Jkd(object):
 
 
 if __name__ == '__main__':
-    # python jenkins_k8s_deploy.py xxshop-srv-auth 10.86.20.57:5000/micro-xxshop-srv-auth:v1 micro-xxshop-srv-auth:v1  
+    # python jenkins_k8s_deploy.py xxshop-srv-auth 10.86.20.57:5000/micro-xxshop-srv-auth:v1 micro-xxshop-srv-auth
     jkd = Jkd(APP_NAME, IMAGE_NAME, DEPLOY_NAME)
     jkd.buildApp()
     jkd.makeImage()
     jkd.pushImage()
+    jkd.setDeploy()
     
 
 
