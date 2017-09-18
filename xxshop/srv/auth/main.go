@@ -56,7 +56,7 @@ func loadCustomerData(path string) map[string]*auth.Customer {
 
 func main() {
   service := micro.NewService(
-    micro.Name("xxshop.srv.auth"),
+    micro.Name("go.micro.xxshop.srv.auth"),
   )
 
   service.Init()

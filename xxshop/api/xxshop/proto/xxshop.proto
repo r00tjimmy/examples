@@ -1,0 +1,6 @@
+syntax = "proto3"
+
+package xxshop;
+
+import "github.com/micro/examples/xxshop/srv/profile/proto/profile.proto";
+import "github.com/micro/examples/xxshop/srv/rate/proto/rate.proto";
