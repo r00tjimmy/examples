@@ -14,6 +14,9 @@
 3. $deploy_name 部署在 k8s 上deploy 的名称
 
 
+run like:
+./jenkins_k8s_deploy.py xxshop-srv-auth 10.86.20.57:5000/micro-xxshop-srv-auth:v1 micro-xxshop-srv-auth
+
 大概的shell流程如下:
 ------------------------------------------------------
 
